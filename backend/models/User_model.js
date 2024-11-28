@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const dotenv = require('dotenv')
+dotenv.config();
 const user_Schema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    name: { type: String },
+    email: { type: String, unique: true },
+    password: { type: String },
     role: {
         type: String,
         enum: ['admin', 'teacher', 'student'],

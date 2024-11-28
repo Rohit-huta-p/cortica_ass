@@ -1,18 +1,24 @@
 /**
  * USER ROUTES
- * register - 
+ *   Register -
  *      POST -> /api/user/register
- *      GET -> /api/users
- *      PATCH -> /api/user/update
- *      DELETE -> /api/user/delete
+ *   Login -
+ *      POST -> /api/user/login
+ *   GET -> /api/user
+ *   PATCH -> /api/user/update
+ *   DELETE -> /api/user/delete
  */
 
 const router = require("express").Router();
 const multerUploads = require('../utils/config/multer');
 
-const { registerUser } = require("../controller/user_controller");
+const { registerUser, loginUser, getUsers } = require("../controller/user_controller");
 
-router.post('/register', multerUploads.single('profilePicture', registerUser))
+
+router.get('/', getUsers);
+router.post('/register', multerUploads.single('profilePicture'), registerUser);
+router.post('/login', loginUser);
+
 
 
 
